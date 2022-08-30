@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Registrace</h1>
+<form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+    
+    {{ form.errors }}
+    {%endif%}
+    <div class="row">
+        <label class="col-sm-4  col_1">Uživatelské jméno</label>
+        <div class="col-sm-4  col_2">{{form.username}}</div>
+    </div>
+    <div class="row">
+        <label class="col-sm-4  col_1">heslo</label>
+        <div class="col-sm-4 col_2">{{form.password1}}</div>
+    </div>
+    <div class="row">
+        <label class="col-sm-4  col_1">znovu heslo</label>
+        <div class="col-sm-4 col_2">{{form.password2}}</div>
+    </div>
+    <div class="row_1">
+        <input type="submit" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" value ="Registrace"></imput>  
+        </input>
+        <a type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" href="{% url 'login' %} ">Přihlášení</a>
+    </div>
+</form>
+
+{% endblock %}

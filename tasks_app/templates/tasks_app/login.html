@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Přihlášení</h1>
+<div class="row">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <label class="col-sm-4 col_1">Uživatelské jméno</label>
+            <div class="col-sm-4 col_2">{{form.username}}</div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 col_1">heslo</label>
+            <div class="col-sm-4 col_2">{{form.password}}</div>
+        </div>
+        <input type="submit" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" value ="Přihlášení"></imput>    
+        <a type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" href="{% url 'register' %}">Registrace</a>
+    </form>
+</div>
+{% endblock %}

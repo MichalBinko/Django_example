@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Úkol</h3>
+
+<form method="post" action="">
+    {% csrf_token %} 
+    <div class="row">
+        <label class="col-sm-3 col_1">Název:</label>
+        <div class="col-sm-6 col_3">{{form.title}}</div>
+    </div>
+    <div class="row">
+        <label class="col-sm-3 col_1 d-flex justify-content-center">Popis:</label>
+        <div class="col-sm-8 col_3 d-flex justify-content-center">{{form.description}}</div>
+    </div>
+        <div class="row">
+        <label class="col-sm-3 col_1">Splněno:</label>
+        <div class="col-sm-1 col_3">{{form.complete}}</div>
+    </div>
+    <div class="row_1">
+        <input type="submit" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" value ="Ulož úkol"></imput>  
+        </input>
+    <a type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" href="{% url 'tasks' %}"> zpět</a>
+    </div>
+</form>
+{% endblock %}

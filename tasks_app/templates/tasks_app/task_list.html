@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="header">
+    <h1 >Můj seznam úkolů {{color}} </h1>
+    {% if request.user.is_authenticated %}
+    <h5>Přihlášený uživatel: {{ request.user }}</h5>
+    <h5>Počet nevyřešených úkolů {{ count }}</h5> 
+    <a type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" href="{% url 'task-create' %}">Vložit úkol</a>
+    <a type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" href="{% url 'logout' %}" >Odhlásit se</a>
+    {% else %}
+    <a type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" href="{% url 'login' %} " > Přihlášení</a>
+    {% endif %}
+       
+    {% for task in tasks %}
+    {% if not task.complete %}
+    <div class="row row_uncomplete">
+        <div class="col-sm-6 ">{{ task.title }} </div>
+        <a href="{% url 'task-update' task.id %}" type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" >upravit</a>
+        <a href="{% url 'task-delete' task.id %}" type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" >smazat</a>
+    </div>
+    {% endif %}
+    {% empty %}
+    {% endfor %}
+    {% for task in tasks %}
+    {% if task.complete %}
+    <div class="row row_complete">
+        <div class="col-sm-6 ">{{ task.title }} </div>
+        <a href="{% url 'task-update' task.id %}" type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" >upravit</a>
+        <a href="{% url 'task-delete' task.id %}" type="button" class="col-sm-2 btn btn-sm btn-space btn-outline-dark" >smazat</a>
+    </div>
+            
+    {% endif %}
+    {% empty %}
+    <h5>prázdný seznam</h5>
+    {% endfor %}
+</div>     
+{% endblock %}
